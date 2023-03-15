@@ -1,13 +1,19 @@
 import requests
 import unittest
+import configparser
 from tasks.main_task2 import YaUploader
+
 
 
 #################  Задание 2 ###################
 
+
 class Test(unittest.TestCase):
     def test_exists_folder(self):
-        uploader = YaUploader('y0_AgAAAAACJgUTAADLWwAAAADQUu4Ssvs6XLpRRLSvjZbPuH2KGFqk8UA')
+        config = configparser.ConfigParser()
+        config.read('settings.ini')
+        tokenYa = config['Ya']['token']
+        uploader = YaUploader(tokenYa)
         folder_path = uploader.add_folder('ПАПКА')
         headers = uploader._get_headers()
         params = {'path': folder_path}

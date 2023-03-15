@@ -1,9 +1,9 @@
 import requests
-
+import configparser
 
 class YaUploader:
     def __init__(self, token: str):
-        self.token = 'y0_AgAAAAACJgUTAADLWwAAAADQUu4Ssvs6XLpRRLSvjZbPuH2KGFqk8UA'
+        self.token = token
         self.url = 'https://cloud-api.yandex.net/v1/disk/resources/'
 
     def _get_headers(self):
@@ -19,9 +19,12 @@ class YaUploader:
         return path
 
 
-
 if __name__ == '__main__':
 
-    uploader = YaUploader()
+    config = configparser.ConfigParser()
+    config.read('settings.ini')
+    tokenYa = config['Ya']['token']
+
+    uploader = YaUploader(tokenYa)
 
     uploader.add_folder('Папка')
