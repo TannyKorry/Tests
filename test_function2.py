@@ -1,6 +1,5 @@
 import requests
 import unittest
-# import pytest
 from tasks.main_task2 import YaUploader
 
 
